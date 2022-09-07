@@ -73,14 +73,43 @@ if __name__ == '__main__':
             elif op_menu_tecnico == "6":                                    
                 print("funcion sin implementar")
             elif op_menu_tecnico =="8":
-                nuevo_prestamo = crear_prestamo()
-                
-                equpo_encontrado = consultar_equipos_por_nombre(nuevo_prestamo.equipo)
+
+                print("Registrar prestamo")
+                nombre = input("Nombre:")
+                carnet = input("Carnet:")
+                equipo = input("Equipo:")
+                fecha_prestamo = input("Fecha de prestamo (yyyy-mm-dd):")
+                fecha_entrega = input("Fecha de entrega (yyyy-mm-dd):")
+
+                equpo_encontrado = consultar_equipos_por_nombre(equipo)
 
                 if equpo_encontrado == None:
                     print("El prestamo no se puede hacer por que el equipo no se encuntra en inventario")
                 else:
+                    p = Prestamo(nombre, carnet, equipo, fecha_prestamo, fecha_entrega)
                     equpo_encontrado.cantidad = equpo_encontrado.cantidad-1
                     equpo_encontrado.actualizar()
                     registrar_prestamo(nuevo_prestamo)
                     print("El prestamo se realizo correctament")
+
+            elif op_menu_tecnico == "9":
+                nombre_equipo = input("Nombre equipo a devolver : ")
+                resultados = consultar_prestamos_por_nombre_equipo( nombre_equipo)
+
+                if len(resultados) == 0:
+                    print("no se encuentran resultados para la consulta")
+                else:
+                    # TODO: Como identificar que prestamo deseo devolver
+                    prestamo  = resultados[0]
+                    nombre_equipo_devolver = prestamo.nombre
+
+                    equipo_devolver= consultar_equipos_por_nombre(nombre_equipo)
+                    equipo_devolver.cantidad = equipo_devolver.cantidad +1
+                    equipo_devolver.actualizar()
+
+                    # TODO: devo eliminnar el registro de prestamos ? o no ?
+                    eliminar_prestamo(prestamo)
+
+
+
+

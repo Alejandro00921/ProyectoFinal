@@ -10,5 +10,6 @@ class MenuTecnicos:
             6. Salir
 
             8. Regitrar prestamo
+            9. Devolver prestamo 
             """)
         return op
