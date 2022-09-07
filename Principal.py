@@ -81,4 +81,6 @@ if __name__ == '__main__':
                     print("El prestamo no se puede hacer por que el equipo no se encuntra en inventario")
                 else:
                     equpo_encontrado.cantidad = equpo_encontrado.cantidad-1
+                    equpo_encontrado.actualizar()
                     registrar_prestamo(nuevo_prestamo)
+                    print("El prestamo se realizo correctament")

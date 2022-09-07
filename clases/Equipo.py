@@ -22,7 +22,7 @@ class Equipo:
         self.fum = fum
 
     def actualizar(self):
-        lequipos_archivo = Equipo.listar_equipos()
+        lequipos_archivo = listar_equipos()
         with open(Equipo.nombre_archivo, 'w') as equipos:
             for r in range(len(lequipos_archivo)):
                 fila = lequipos_archivo[r]
@@ -63,7 +63,7 @@ def consultar_equipos_por_nombre(nombre_equipo)->Equipo:
             eq = equipo.split(';')
             if nombre_equipo == eq[col_nombre]:
                 obj_equipo = Equipo(eq[col_nombre], eq[col_referencia],
-                                    eq[col_cantidad], eq[col_proveedor], eq[col_ciclo], eq[col_fum])
+                                    int(eq[col_cantidad]), eq[col_proveedor], eq[col_ciclo], eq[col_fum])
                 break
     return obj_equipo   
 
