@@ -7,9 +7,8 @@ class MenuTecnicos:
             3. Imprimir Equipos        
             4. Modificar Equipo
             5. Ver datos del Equipo
-            6. Salir
-
-            8. Regitrar prestamo
-            9. Devolver prestamo 
+            7. Regitrar prestamo
+            8. Devolver prestamo 
+            q. Salir
             """)
         return op

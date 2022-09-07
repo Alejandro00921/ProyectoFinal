@@ -70,9 +70,8 @@ if __name__ == '__main__':
                 nombre_equipo = input("Equipo a consultar: ")
                 equipo = consultar_equipos_por_nombre(nombre_equipo)
                 equipo.imprimir_datos_equipo()
-            elif op_menu_tecnico == "6":                                    
-                print("funcion sin implementar")
-            elif op_menu_tecnico =="8":
+
+            elif op_menu_tecnico =="7":
 
                 print("Registrar prestamo")
                 nombre = input("Nombre:")
@@ -86,13 +85,13 @@ if __name__ == '__main__':
                 if equpo_encontrado == None:
                     print("El prestamo no se puede hacer por que el equipo no se encuntra en inventario")
                 else:
-                    p = Prestamo(nombre, carnet, equipo, fecha_prestamo, fecha_entrega)
+                    nuevo_prestamo = Prestamo(nombre, carnet, equipo, fecha_prestamo, fecha_entrega)
                     equpo_encontrado.cantidad = equpo_encontrado.cantidad-1
                     equpo_encontrado.actualizar()
                     registrar_prestamo(nuevo_prestamo)
                     print("El prestamo se realizo correctament")
 
-            elif op_menu_tecnico == "9":
+            elif op_menu_tecnico == "8":
                 nombre_equipo = input("Nombre equipo a devolver : ")
                 resultados = consultar_prestamos_por_nombre_equipo( nombre_equipo)
 
@@ -109,7 +108,8 @@ if __name__ == '__main__':
 
                     # TODO: devo eliminnar el registro de prestamos ? o no ?
                     eliminar_prestamo(prestamo)
-
+            elif op_menu_tecnico == "q":
+                print("funcion sin implementar")
 
 
 
