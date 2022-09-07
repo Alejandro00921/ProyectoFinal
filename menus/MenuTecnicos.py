@@ -8,5 +8,7 @@ class MenuTecnicos:
             4. Modificar Equipo
             5. Ver datos del Equipo
             6. Salir
+
+            8. Regitrar prestamo
             """)
         return op

@@ -7,9 +7,6 @@ Created on Thu Aug 18 09:10:06 2022
 from datetime import date
 from tabulate import tabulate as t
 
-# Columna de los campos en el archivo
-global col_nombre, referencia, cantidad, proveedor, ciclo, fum
-col_nombre, col_referencia, col_cantidad, col_proveedor, col_ciclo, col_fum = 0, 1, 2, 3, 4, 5
 
 class Equipo:
     nombre_archivo = "./database/Equipo"
@@ -23,8 +20,6 @@ class Equipo:
         self.referencia = referencia
         self.ciclo = ciclo
         self.fum = fum
-
-
 
     def actualizar(self):
         lequipos_archivo = Equipo.listar_equipos()
@@ -52,13 +47,16 @@ class Equipo:
         print(t([equipo], Equipo.cabeceras, tablefmt="grid"))
 
 ######################################################################
+# Columna de los campos en el archivo
+global col_nombre, referencia, cantidad, proveedor, ciclo, fum
+col_nombre, col_referencia, col_cantidad, col_proveedor, col_ciclo, col_fum = 0, 1, 2, 3, 4, 5
 
 def listar_equipos():
     with open(Equipo.nombre_archivo, 'r') as equipos:
         lequipos = equipos.readlines()
     return lequipos
 
-def consulta_por_nombre( nombre_equipo):
+def consultar_equipos_por_nombre(nombre_equipo)->Equipo:
     obj_equipo = None
     with open(Equipo.nombre_archivo, 'r') as equipos:
         for equipo in equipos.readlines():

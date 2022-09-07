@@ -12,6 +12,8 @@ from menus.Menu import Menu
 from menus.MenuTecnicos import MenuTecnicos
 
 from clases.Equipo import * 
+from clases.Prestamo import * 
+
 
 
 if __name__ == '__main__':
@@ -19,10 +21,10 @@ if __name__ == '__main__':
     op = menu.ver()
     if op == "1":
         menu2 = MenuTecnicos()
-        op2 =""
-        while op2 != "6":
-            op2 = menu2.ver()
-            if op2 == "1":
+        op_menu_tecnico =""
+        while op_menu_tecnico != "6":
+            op_menu_tecnico = menu2.ver()
+            if op_menu_tecnico == "1":
                 print("\n Formulario Registro de Equipo")
                 numero_equipo = input("Numero equipo: ")
                 nombre = input("Nombre equipo:")
@@ -43,18 +45,17 @@ if __name__ == '__main__':
                     print("No se pudo registar")
 
                 imprimir_equipos()
-            elif op2 == "2":            
+            elif op_menu_tecnico == "2":            
                 nombre_equipo = input("Indique el equipo: ")
-                equipo = consulta_por_nombre(nombre_equipo)
+                equipo = consultar_equipos_por_nombre(nombre_equipo)
                 equipo.imprimir_datos_equipo()
-            elif op2 == "3":
+            elif op_menu_tecnico == "3":
                 imprimir_equipos()
-            elif op2 == "4":            
-
+            elif op_menu_tecnico == "4":            
 
                 nombre_equipo = input("Equipo a modificar: ")
             
-                equipo = consulta_por_nombre(nombre_equipo)
+                equipo = consultar_equipos_por_nombre(nombre_equipo)
                 if equipo == None:
                     print("No se encieuntra equipo")
                 else:
@@ -65,10 +66,19 @@ if __name__ == '__main__':
                     diferencia = hoy  - equipo.fum    
                     equipo.ciclo = diferencia.days
                     equipo.actualizar()
-            elif op2 == "5":
+            elif op_menu_tecnico == "5":
                 nombre_equipo = input("Equipo a consultar: ")
-                equipo = consulta_por_nombre(nombre_equipo)
+                equipo = consultar_equipos_por_nombre(nombre_equipo)
                 equipo.imprimir_datos_equipo()
-            elif op2 == "6":                                    
+            elif op_menu_tecnico == "6":                                    
                 print("funcion sin implementar")
-            
+            elif op_menu_tecnico =="8":
+                nuevo_prestamo = crear_prestamo()
+                
+                equpo_encontrado = consultar_equipos_por_nombre(nuevo_prestamo.equipo)
+
+                if equpo_encontrado == None:
+                    print("El prestamo no se puede hacer por que el equipo no se encuntra en inventario")
+                else:
+                    equpo_encontrado.cantidad = equpo_encontrado.cantidad-1
+                    registrar_prestamo(nuevo_prestamo)
